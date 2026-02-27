@@ -27,10 +27,10 @@
 
                     <div class="form-group">
                         <label for="loginUsername">Username</label>
-                        <input 
-                            type="text" 
-                            id="loginUsername" 
-                            placeholder="Enter your username" 
+                        <input
+                            type="text"
+                            id="loginUsername"
+                            placeholder="Enter your username"
                             required
                             autocomplete="off"
                         >
@@ -52,10 +52,10 @@
 
                     <div class="form-group">
                         <label for="createUsername">Choose a Username</label>
-                        <input 
-                            type="text" 
-                            id="createUsername" 
-                            placeholder="Enter username (2-20 characters)" 
+                        <input
+                            type="text"
+                            id="createUsername"
+                            placeholder="Enter username (2-20 characters)"
                             required
                             autocomplete="off"
                         >
@@ -144,7 +144,7 @@
                         <button class="option-card" id="bonusModeBtn">
                             <span class="option-icon">⭐</span>
                             <span class="option-title">Bonus Exams</span>
-                            <span class="option-desc">Sentence building</span>
+                            <span class="option-desc">Sentence typing</span>
                         </button>
                         <button class="option-card" id="finalModeBtn">
                             <span class="option-icon">🎓</span>
@@ -189,46 +189,16 @@
                 <button class="btn btn-back" id="backFromStudySelection">← Back</button>
                 <h2>Select a Level</h2>
                 <div class="level-grid">
-                    <button class="level-btn study-btn" data-level="level1">
-                        <span class="level-number">1</span>
-                        <span class="level-words">15 Words</span>
-                    </button>
-                    <button class="level-btn study-btn" data-level="level2">
-                        <span class="level-number">2</span>
-                        <span class="level-words">15 Words</span>
-                    </button>
-                    <button class="level-btn study-btn" data-level="level3">
-                        <span class="level-number">3</span>
-                        <span class="level-words">15 Words</span>
-                    </button>
-                    <button class="level-btn study-btn" data-level="level4">
-                        <span class="level-number">4</span>
-                        <span class="level-words">15 Words</span>
-                    </button>
-                    <button class="level-btn study-btn" data-level="level5">
-                        <span class="level-number">5</span>
-                        <span class="level-words">15 Words</span>
-                    </button>
-                    <button class="level-btn study-btn" data-level="level6">
-                        <span class="level-number">6</span>
-                        <span class="level-words">15 Words</span>
-                    </button>
-                    <button class="level-btn study-btn" data-level="level7">
-                        <span class="level-number">7</span>
-                        <span class="level-words">15 Words</span>
-                    </button>
-                    <button class="level-btn study-btn" data-level="level8">
-                        <span class="level-number">8</span>
-                        <span class="level-words">15 Words</span>
-                    </button>
-                    <button class="level-btn study-btn" data-level="level9">
-                        <span class="level-number">9</span>
-                        <span class="level-words">15 Words</span>
-                    </button>
-                    <button class="level-btn study-btn" data-level="level10">
-                        <span class="level-number">10</span>
-                        <span class="level-words">15 Words</span>
-                    </button>
+                    <button class="level-btn study-btn" data-level="level1"><span class="level-number">1</span><span class="level-words">15 Words</span></button>
+                    <button class="level-btn study-btn" data-level="level2"><span class="level-number">2</span><span class="level-words">15 Words</span></button>
+                    <button class="level-btn study-btn" data-level="level3"><span class="level-number">3</span><span class="level-words">15 Words</span></button>
+                    <button class="level-btn study-btn" data-level="level4"><span class="level-number">4</span><span class="level-words">15 Words</span></button>
+                    <button class="level-btn study-btn" data-level="level5"><span class="level-number">5</span><span class="level-words">15 Words</span></button>
+                    <button class="level-btn study-btn" data-level="level6"><span class="level-number">6</span><span class="level-words">15 Words</span></button>
+                    <button class="level-btn study-btn" data-level="level7"><span class="level-number">7</span><span class="level-words">15 Words</span></button>
+                    <button class="level-btn study-btn" data-level="level8"><span class="level-number">8</span><span class="level-words">15 Words</span></button>
+                    <button class="level-btn study-btn" data-level="level9"><span class="level-number">9</span><span class="level-words">15 Words</span></button>
+                    <button class="level-btn study-btn" data-level="level10"><span class="level-number">10</span><span class="level-words">15 Words</span></button>
                 </div>
             </div>
         </div>
@@ -306,6 +276,202 @@
             <div class="answer-controls">
                 <button id="incorrectBtn" class="btn btn-answer btn-incorrect">❌ Incorrect</button>
                 <button id="correctBtn" class="btn btn-answer btn-correct">✅ Correct</button>
+            </div>
+        </div>
+
+        <!-- Quiz Selection Screen -->
+        <div id="quizSelectionScreen" class="screen">
+            <div class="selection-container">
+                <button class="btn btn-back" id="backFromQuizSelection">← Back</button>
+                <h2>❓ Quiz Mode</h2>
+                <p class="helper-text">Select a level, then choose a quiz type.</p>
+
+                <h3 class="subheading">Choose a Level</h3>
+                <div class="level-grid" id="quizLevelGrid"></div>
+
+                <h3 class="subheading">Choose Quiz Type</h3>
+                <div class="options-grid quiz-type-grid">
+                    <button class="option-card" id="quizTypeTranslationBtn">
+                        <span class="option-icon">🈶</span>
+                        <span class="option-title">Translation Quiz</span>
+                        <span class="option-desc">Chinese + pinyin → English</span>
+                    </button>
+                    <button class="option-card" id="quizTypeCharacterBtn">
+                        <span class="option-icon">汉</span>
+                        <span class="option-title">Character Quiz</span>
+                        <span class="option-desc">English → Chinese</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quizScreen" class="screen">
+            <div class="study-header">
+                <button id="quizBackBtn" class="btn btn-back">← Back</button>
+                <h2 id="quizTitle">Quiz</h2>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-meta">
+                    <span class="card-counter">Question <span id="quizCurrent">1</span> of <span id="quizTotal">15</span></span>
+                    <span class="progress-bar">
+                        <div class="progress-fill" id="quizProgressFill"></div>
+                    </span>
+                </div>
+
+                <div class="quiz-prompt-card">
+                    <div class="quiz-prompt-top">
+                        <div class="quiz-prompt-main" id="quizPromptMain">你</div>
+                        <div class="quiz-prompt-sub" id="quizPromptSub">nǐ</div>
+                    </div>
+                    <div class="quiz-instructions" id="quizInstructions">Choose the correct answer.</div>
+                </div>
+
+                <div class="quiz-options" id="quizOptions"></div>
+
+                <div class="quiz-feedback" id="quizFeedback"></div>
+
+                <div class="quiz-controls">
+                    <button class="btn btn-nav" id="quizNextBtn" disabled>Next →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bonus Exams Selection Screen -->
+        <div id="bonusSelectionScreen" class="screen">
+            <div class="selection-container">
+                <button class="btn btn-back" id="backFromBonusSelection">← Back</button>
+                <h2>⭐ Bonus Exams</h2>
+                <p class="helper-text">Sentence typing practice. You can type Chinese characters or pinyin (numbered or accented) if accepted.</p>
+
+                <h3 class="subheading">Choose Difficulty</h3>
+                <div class="options-grid">
+                    <button class="option-card" id="bonusEasyBtn">
+                        <span class="option-icon">🌱</span>
+                        <span class="option-title">Easy</span>
+                        <span class="option-desc">Single-word sentences</span>
+                    </button>
+                    <button class="option-card" id="bonusMediumBtn">
+                        <span class="option-icon">🌿</span>
+                        <span class="option-title">Medium</span>
+                        <span class="option-desc">Two-word combos</span>
+                    </button>
+                    <button class="option-card" id="bonusAdvancedBtn">
+                        <span class="option-icon">🌳</span>
+                        <span class="option-title">Advanced</span>
+                        <span class="option-desc">Full phrases</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bonus Exam Screen -->
+        <div id="bonusExamScreen" class="screen">
+            <div class="study-header">
+                <button id="bonusBackBtn" class="btn btn-back">← Back</button>
+                <h2 id="bonusTitle">Bonus Exam</h2>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-meta">
+                    <span class="card-counter">Question <span id="bonusCurrent">1</span> of <span id="bonusTotal">15</span></span>
+                    <span class="progress-bar">
+                        <div class="progress-fill" id="bonusProgressFill"></div>
+                    </span>
+                </div>
+
+                <div class="quiz-prompt-card">
+                    <div class="quiz-prompt-top">
+                        <div class="quiz-prompt-main" id="bonusPromptMain">Build the sentence</div>
+                        <div class="quiz-prompt-sub" id="bonusPromptSub">Example target shown after answer</div>
+                    </div>
+                    <div class="quiz-instructions" id="bonusInstructions">Type the sentence (Chinese or pinyin if accepted).</div>
+                </div>
+
+                <div class="typing-area">
+                    <div class="form-group">
+                        <label for="bonusInput">Your answer</label>
+                        <input id="bonusInput" type="text" placeholder="Type here..." autocomplete="off" />
+                    </div>
+                    <button class="btn btn-primary" id="bonusSubmitBtn">Submit</button>
+                </div>
+
+                <div class="quiz-feedback" id="bonusFeedback"></div>
+
+                <div class="quiz-controls">
+                    <button class="btn btn-nav" id="bonusNextBtn" disabled>Next →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Exam Selection Screen -->
+        <div id="finalExamSelectionScreen" class="screen">
+            <div class="selection-container">
+                <button class="btn btn-back" id="backFromFinalSelection">← Back</button>
+                <h2>🎓 Final Exams</h2>
+                <p class="helper-text">Three comprehensive exams covering all 150 words.</p>
+
+                <div class="options-grid">
+                    <button class="option-card" id="finalTranslationBtn">
+                        <span class="option-icon">🈶</span>
+                        <span class="option-title">Final Exam 1</span>
+                        <span class="option-desc">Translation (MCQ)</span>
+                    </button>
+                    <button class="option-card" id="finalCharacterBtn">
+                        <span class="option-icon">汉</span>
+                        <span class="option-title">Final Exam 2</span>
+                        <span class="option-desc">Character (MCQ)</span>
+                    </button>
+                    <button class="option-card" id="finalPinyinBtn">
+                        <span class="option-icon">⌨️</span>
+                        <span class="option-title">Final Exam 3</span>
+                        <span class="option-desc">Pinyin typing</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Exam Screen -->
+        <div id="finalExamScreen" class="screen">
+            <div class="study-header">
+                <button id="finalBackBtn" class="btn btn-back">← Back</button>
+                <h2 id="finalTitle">Final Exam</h2>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-meta">
+                    <span class="card-counter">Question <span id="finalCurrent">1</span> of <span id="finalTotal">150</span></span>
+                    <span class="progress-bar">
+                        <div class="progress-fill" id="finalProgressFill"></div>
+                    </span>
+                </div>
+
+                <div class="quiz-prompt-card">
+                    <div class="quiz-prompt-top">
+                        <div class="quiz-prompt-main" id="finalPromptMain">你</div>
+                        <div class="quiz-prompt-sub" id="finalPromptSub">nǐ</div>
+                    </div>
+                    <div class="quiz-instructions" id="finalInstructions">Choose the correct answer.</div>
+                </div>
+
+                <!-- MCQ area -->
+                <div class="quiz-options" id="finalOptions"></div>
+
+                <!-- Typing area -->
+                <div class="typing-area" id="finalTypingArea" style="display:none;">
+                    <div class="form-group">
+                        <label for="finalPinyinInput">Type the pinyin</label>
+                        <input id="finalPinyinInput" type="text" placeholder="Example: ni3 or nǐ" autocomplete="off" />
+                    </div>
+                    <button class="btn btn-primary" id="finalSubmitTypingBtn">Submit</button>
+                </div>
+
+                <div class="quiz-feedback" id="finalFeedback"></div>
+
+                <div class="quiz-controls">
+                    <button class="btn btn-nav" id="finalNextBtn" disabled>Next →</button>
+                </div>
             </div>
         </div>
 
