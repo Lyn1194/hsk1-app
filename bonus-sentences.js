@@ -1,0 +1,53 @@
+const bonusSentenceTemplates = {
+    easy: [
+        { word: '你', pinyin: 'nǐ', translation: 'you', example: '你好', examplePinyin: 'nǐ hǎo', acceptedAnswers: ['你好', 'ni3 hao3', 'nǐ hǎo'] },
+        { word: '好', pinyin: 'hǎo', translation: 'good', example: '很好', examplePinyin: 'hen3 hao3', acceptedAnswers: ['很好', 'hen3 hao3'] },
+        { word: '我', pinyin: 'wǒ', translation: 'I', example: '我好', examplePinyin: 'wǒ hǎo', acceptedAnswers: ['我好', 'wo3 hao3'] },
+        { word: '是', pinyin: 'shì', translation: 'to be', example: '我是学生', examplePinyin: 'wo3 shi4 xue2 sheng1', acceptedAnswers: ['我是学生'] },
+        { word: '的', pinyin: 'de', translation: 'possessive', example: '我的书', examplePinyin: 'wo3 de5 shu1', acceptedAnswers: ['我的书'] },
+        { word: '一', pinyin: 'yī', translation: 'one', example: '一个', examplePinyin: 'yi1 ge5', acceptedAnswers: ['一个', 'yi1 ge'] },
+        { word: '个', pinyin: 'ge', translation: 'classifier', example: '一个人', examplePinyin: 'yi1 ge5 ren2', acceptedAnswers: ['一个人'] },
+        { word: '人', pinyin: 'rén', translation: 'person', example: '一个人', examplePinyin: 'yi1 ge5 ren2', acceptedAnswers: ['一个人'] },
+        { word: '在', pinyin: 'zài', translation: 'at', example: '我在家', examplePinyin: 'wo3 zai4 jia1', acceptedAnswers: ['我在家'] },
+        { word: '有', pinyin: 'yǒu', translation: 'have', example: '我有书', examplePinyin: 'wo3 you3 shu1', acceptedAnswers: ['我有书'] },
+        { word: '和', pinyin: 'hé', translation: 'and', example: '你和我', examplePinyin: 'ni3 he2 wo3', acceptedAnswers: ['你和我'] },
+        { word: '不', pinyin: 'bù', translation: 'not', example: '不好', examplePinyin: 'bu4 hao3', acceptedAnswers: ['不好'] },
+        { word: '对', pinyin: 'duì', translation: 'correct', example: '对不对', examplePinyin: 'dui4 bu4 dui4', acceptedAnswers: ['对不对'] },
+        { word: '这', pinyin: 'zhè', translation: 'this', example: '这个', examplePinyin: 'zhe4 ge5', acceptedAnswers: ['这个'] },
+        { word: '那', pinyin: 'nà', translation: 'that', example: '那个', examplePinyin: 'na4 ge5', acceptedAnswers: ['那个'] }
+    ],
+    medium: [
+        { words: ['你', '好'], pinyins: ['nǐ', 'hǎo'], translations: ['you', 'good'], example: '你好', examplePinyin: 'nǐ hǎo', acceptedAnswers: ['你好', 'ni3 hao3'] },
+        { words: ['我', '是'], pinyins: ['wǒ', 'shì'], translations: ['I', 'be'], example: '我是学生', examplePinyin: 'wo3 shi4 xue2 sheng1', acceptedAnswers: ['我是学生'] },
+        { words: ['我', '有'], pinyins: ['wǒ', 'yǒu'], translations: ['I', 'have'], example: '我有书', examplePinyin: 'wo3 you3 shu1', acceptedAnswers: ['我有书'] },
+        { words: ['你', '和'], pinyins: ['nǐ', 'hé'], translations: ['you', 'and'], example: '你和我', examplePinyin: 'ni3 he2 wo3', acceptedAnswers: ['你和我'] },
+        { words: ['我', '在'], pinyins: ['wǒ', 'zài'], translations: ['I', 'at'], example: '我在家', examplePinyin: 'wo3 zai4 jia1', acceptedAnswers: ['我在家'] },
+        { words: ['不', '好'], pinyins: ['bù', 'hǎo'], translations: ['not', 'good'], example: '不好', examplePinyin: 'bu4 hao3', acceptedAnswers: ['不好'] },
+        { words: ['这', '个'], pinyins: ['zhè', 'ge'], translations: ['this', 'classifier'], example: '这个', examplePinyin: 'zhe4 ge5', acceptedAnswers: ['这个'] },
+        { words: ['一', '个'], pinyins: ['yī', 'ge'], translations: ['one', 'classifier'], example: '一个人', examplePinyin: 'yi1 ge5 ren2', acceptedAnswers: ['一个人'] },
+        { words: ['我', '的'], pinyins: ['wǒ', 'de'], translations: ['I', 'possessive'], example: '我的书', examplePinyin: 'wo3 de5 shu1', acceptedAnswers: ['我的书'] },
+        { words: ['很', '好'], pinyins: ['hěn', 'hǎo'], translations: ['very', 'good'], example: '很好', examplePinyin: 'hen3 hao3', acceptedAnswers: ['很好'] },
+        { words: ['学', '生'], pinyins: ['xué', 'shēng'], translations: ['study', 'life'], example: '学生', examplePinyin: 'xue2 sheng1', acceptedAnswers: ['学生'] },
+        { words: ['老', '师'], pinyins: ['lǎo', 'shī'], translations: ['old', 'teacher'], example: '老师', examplePinyin: 'lao3 shi1', acceptedAnswers: ['老师'] },
+        { words: ['朋', '友'], pinyins: ['péng', 'yǒu'], translations: ['friend', 'companion'], example: '朋友', examplePinyin: 'peng2 you5', acceptedAnswers: ['朋友'] },
+        { words: ['谢', '谢'], pinyins: ['xiè', 'xie'], translations: ['thank', 'you'], example: '谢谢', examplePinyin: 'xie4 xie5', acceptedAnswers: ['谢谢'] },
+        { words: ['再', '见'], pinyins: ['zài', 'jiàn'], translations: ['again', 'see'], example: '再见', examplePinyin: 'zai4 jian4', acceptedAnswers: ['再见'] }
+    ],
+    advanced: [
+        { words: ['我', '是', '学生'], pinyins: ['wǒ', 'shì', 'xuéshēng'], translations: ['I', 'to be', 'student'], example: '我是学生', examplePinyin: 'wo3 shi4 xue2 sheng1', acceptedAnswers: ['我是学生'] },
+        { words: ['你', '好', '吗'], pinyins: ['nǐ', 'hǎo', 'ma'], translations: ['you', 'good', 'question'], example: '你好吗', examplePinyin: 'ni3 hao3 ma5', acceptedAnswers: ['你好吗'] },
+        { words: ['我', '在', '家'], pinyins: ['wǒ', 'zài', 'jiā'], translations: ['I', 'at', 'home'], example: '我在家', examplePinyin: 'wo3 zai4 jia1', acceptedAnswers: ['我在家'] },
+        { words: ['我', '有', '书'], pinyins: ['wǒ', 'yǒu', 'shū'], translations: ['I', 'have', 'book'], example: '我有书', examplePinyin: 'wo3 you3 shu1', acceptedAnswers: ['我有书'] },
+        { words: ['你', '和', '我'], pinyins: ['nǐ', 'hé', 'wǒ'], translations: ['you', 'and', 'I'], example: '你和我', examplePinyin: 'ni3 he2 wo3', acceptedAnswers: ['你和我'] },
+        { words: ['我', '的', '书'], pinyins: ['wǒ', 'de', 'shū'], translations: ['I', 'possessive', 'book'], example: '我的书', examplePinyin: 'wo3 de5 shu1', acceptedAnswers: ['我的书'] },
+        { words: ['这', '个', '人'], pinyins: ['zhè', 'ge', 'rén'], translations: ['this', 'classifier', 'person'], example: '这个人', examplePinyin: 'zhe4 ge5 ren2', acceptedAnswers: ['这个人'] },
+        { words: ['那', '个', '人'], pinyins: ['nà', 'ge', 'rén'], translations: ['that', 'classifier', 'person'], example: '那个人', examplePinyin: 'na4 ge5 ren2', acceptedAnswers: ['那个人'] },
+        { words: ['我', '要', '去'], pinyins: ['wǒ', 'yào', 'qù'], translations: ['I', 'want', 'go'], example: '我要去', examplePinyin: 'wo3 yao4 qu4', acceptedAnswers: ['我要去'] },
+        { words: ['你', '能', '做'], pinyins: ['nǐ', 'néng', 'zuò'], translations: ['you', 'can', 'do'], example: '你能做吗', examplePinyin: 'ni3 neng2 zuo4 ma5', acceptedAnswers: ['你能做', 'ni3 neng2 zuo4'] },
+        { words: ['我', '想', '去'], pinyins: ['wǒ', 'xiǎng', 'qù'], translations: ['I', 'want', 'go'], example: '我想去', examplePinyin: 'wo3 xiang3 qu4', acceptedAnswers: ['我想去'] },
+        { words: ['他', '是', '老师'], pinyins: ['tā', 'shì', 'lǎoshī'], translations: ['he', 'to be', 'teacher'], example: '他是老师', examplePinyin: 'ta1 shi4 lao3 shi1', acceptedAnswers: ['他是老师'] },
+        { words: ['我', '吃', '饭'], pinyins: ['wǒ', 'chī', 'fàn'], translations: ['I', 'eat', 'rice'], example: '我吃饭', examplePinyin: 'wo3 chi1 fan4', acceptedAnswers: ['我吃饭'] },
+        { words: ['你', '看', '书'], pinyins: ['nǐ', 'kàn', 'shū'], translations: ['you', 'look', 'book'], example: '你看书', examplePinyin: 'ni3 kan4 shu1', acceptedAnswers: ['你看书'] },
+        { words: ['我', '听', '音乐'], pinyins: ['wǒ', 'tīng', 'yīnyuè'], translations: ['I', 'listen', 'music'], example: '我听音乐', examplePinyin: 'wo3 ting1 yin1 yue4', acceptedAnswers: ['我听音乐'] }
+    ]
+};
