@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSK 1 Flashcard App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="HSK 1">
+</head>
+<body>
+    <!-- Auth Screen (Login/Create) -->
+    <div id="authScreen" class="screen active">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h1>📚 HSK 1</h1>
+                    <p>Learn Mandarin Chinese</p>
+                </div>
+
+                <!-- Login Form -->
+                <div id="loginForm" class="auth-form active">
+                    <h2>Welcome Back</h2>
+
+                    <div class="form-group">
+                        <label for="loginUsername">Username</label>
+                        <input 
+                            type="text" 
+                            id="loginUsername" 
+                            placeholder="Enter your username" 
+                            required
+                            autocomplete="off"
+                        >
+                    </div>
+
+                    <button class="btn btn-primary" id="loginBtn">Sign In</button>
+
+                    <div class="form-footer">
+                        New here?
+                        <button class="link-btn" id="toggleCreateBtn">Create account</button>
+                    </div>
+
+                    <div id="loginError" class="form-error"></div>
+                </div>
+
+                <!-- Create Account Form -->
+                <div id="createForm" class="auth-form">
+                    <h2>Create Account</h2>
+
+                    <div class="form-group">
+                        <label for="createUsername">Choose a Username</label>
+                        <input 
+                            type="text" 
+                            id="createUsername" 
+                            placeholder="Enter username (2-20 characters)" 
+                            required
+                            autocomplete="off"
+                        >
+                    </div>
+
+                    <button class="btn btn-primary" id="createBtn">Create Account</button>
+
+                    <div class="form-footer">
+                        Already have an account?
+                        <button class="link-btn" id="toggleLoginBtn">Sign in</button>
+                    </div>
+
+                    <div id="createError" class="form-error"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="appContainer" class="app-container" style="display: none;">
+        <!-- User Header -->
+        <div class="user-header">
+            <div class="user-info">
+                <span class="user-avatar" id="userAvatar">U</span>
+                <div class="user-details">
+                    <p class="user-name" id="userName">User</p>
+                </div>
+            </div>
+            <button class="btn btn-logout" id="logoutBtn">Logout</button>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-section="home">🏠 Home</button>
+            <button class="nav-tab" data-section="stats">📊 Stats</button>
+            <button class="nav-tab" data-section="study">📚 Study</button>
+            <button class="nav-tab" data-section="settings">⚙️ Settings</button>
+        </div>
+
+        <!-- Home Screen -->
+        <div id="homeScreen" class="screen active">
+            <div class="home-container">
+                <div class="word-of-day-card">
+                    <h3>📝 Word of the Day</h3>
+                    <p class="wod-chinese" id="wordOfDayChinese">你</p>
+                    <p class="wod-pinyin" id="wordOfDayPinyin">nǐ</p>
+                    <p class="wod-translation" id="wordOfDayTranslation">you</p>
+                </div>
+
+                <div class="quick-stats">
+                    <h3>📈 Your Progress</h3>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <span class="stat-number" id="totalWordsLearned">0</span>
+                            <span class="stat-label">Words Learned</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number" id="currentStreak">0</span>
+                            <span class="stat-label">Day Streak</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number" id="overallAccuracy">0%</span>
+                            <span class="stat-label">Accuracy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-section">
+                    <h3>🏆 Achievements</h3>
+                    <div class="achievements-grid" id="achievementsGrid"></div>
+                </div>
+
+                <div class="study-options">
+                    <h3>Choose Your Activity</h3>
+                    <div class="options-grid">
+                        <button class="option-card" id="studyModeBtn">
+                            <span class="option-icon">📚</span>
+                            <span class="option-title">Study Mode</span>
+                            <span class="option-desc">Learn with flashcards</span>
+                        </button>
+                        <button class="option-card" id="quizModeBtn">
+                            <span class="option-icon">❓</span>
+                            <span class="option-title">Quiz Mode</span>
+                            <span class="option-desc">Test your knowledge</span>
+                        </button>
+                        <button class="option-card" id="bonusModeBtn">
+                            <span class="option-icon">⭐</span>
+                            <span class="option-title">Bonus Exams</span>
+                            <span class="option-desc">Sentence building</span>
+                        </button>
+                        <button class="option-card" id="finalModeBtn">
+                            <span class="option-icon">🎓</span>
+                            <span class="option-title">Final Exams</span>
+                            <span class="option-desc">Comprehensive tests</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Screen -->
+        <div id="statsScreen" class="screen">
+            <div class="stats-container">
+                <h2>📊 Your Statistics</h2>
+                <div class="stats-overview">
+                    <div class="stat-card">
+                        <h4>Total Words Learned</h4>
+                        <p class="big-number" id="statsWordsLearned">0</p>
+                        <p class="stat-subtitle">Out of 150</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Overall Accuracy</h4>
+                        <p class="big-number" id="statsOverallAccuracy">0%</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Study Streak</h4>
+                        <p class="big-number" id="statsStreak">0</p>
+                        <p class="stat-subtitle">Days in a row</p>
+                    </div>
+                </div>
+                <div class="level-progress">
+                    <h3>Level Progress</h3>
+                    <div id="levelProgressContainer"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Study Selection Screen -->
+        <div id="studySelectionScreen" class="screen">
+            <div class="selection-container">
+                <button class="btn btn-back" id="backFromStudySelection">← Back</button>
+                <h2>Select a Level</h2>
+                <div class="level-grid">
+                    <button class="level-btn study-btn" data-level="level1">
+                        <span class="level-number">1</span>
+                        <span class="level-words">15 Words</span>
+                    </button>
+                    <button class="level-btn study-btn" data-level="level2">
+                        <span class="level-number">2</span>
+                        <span class="level-words">15 Words</span>
+                    </button>
+                    <button class="level-btn study-btn" data-level="level3">
+                        <span class="level-number">3</span>
+                        <span class="level-words">15 Words</span>
+                    </button>
+                    <button class="level-btn study-btn" data-level="level4">
+                        <span class="level-number">4</span>
+                        <span class="level-words">15 Words</span>
+                    </button>
+                    <button class="level-btn study-btn" data-level="level5">
+                        <span class="level-number">5</span>
+                        <span class="level-words">15 Words</span>
+                    </button>
+                    <button class="level-btn study-btn" data-level="level6">
+                        <span class="level-number">6</span>
+                        <span class="level-words">15 Words</span>
+                    </button>
+                    <button class="level-btn study-btn" data-level="level7">
+                        <span class="level-number">7</span>
+                        <span class="level-words">15 Words</span>
+                    </button>
+                    <button class="level-btn study-btn" data-level="level8">
+                        <span class="level-number">8</span>
+                        <span class="level-words">15 Words</span>
+                    </button>
+                    <button class="level-btn study-btn" data-level="level9">
+                        <span class="level-number">9</span>
+                        <span class="level-words">15 Words</span>
+                    </button>
+                    <button class="level-btn study-btn" data-level="level10">
+                        <span class="level-number">10</span>
+                        <span class="level-words">15 Words</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Study Screen -->
+        <div id="studyScreen" class="screen">
+            <div class="study-header">
+                <button id="studyBackBtn" class="btn btn-back">← Back</button>
+                <h2 id="levelTitle">Level 1</h2>
+            </div>
+
+            <div class="stats">
+                <span class="card-counter">Card <span id="currentCard">1</span> of <span id="totalCards">15</span></span>
+                <span class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </span>
+            </div>
+
+            <div class="study-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Correct:</span>
+                    <span class="stat-value correct" id="correctCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Incorrect:</span>
+                    <span class="stat-value incorrect" id="incorrectCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Accuracy:</span>
+                    <span class="stat-value accuracy" id="accuracyPercent">0%</span>
+                </div>
+            </div>
+
+            <div class="flashcard-container">
+                <div class="flashcard" id="flashcard">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <div class="card-content">
+                                <button class="audio-btn" id="frontAudio" title="Pronounce word">🔊</button>
+                                <h2 class="word-chinese" id="frontWord">你</h2>
+                                <p class="word-pinyin" id="frontPinyin">nǐ</p>
+                            </div>
+                        </div>
+
+                        <div class="flashcard-back">
+                            <div class="card-content">
+                                <div class="back-section">
+                                    <h3 class="section-title">Translation</h3>
+                                    <p class="translation" id="translation">you</p>
+                                </div>
+
+                                <div class="back-section">
+                                    <h3 class="section-title">Example</h3>
+                                    <button class="audio-btn" id="backAudio" title="Pronounce sentence">🔊</button>
+                                    <p class="example-sentence" id="exampleSentence">你好</p>
+                                    <p class="example-pinyin" id="examplePinyin">nǐ hǎo</p>
+                                    <p class="example-translation" id="exampleTranslation">Hello</p>
+                                </div>
+
+                                <div class="back-section">
+                                    <p class="hint">Click card to flip</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="prevBtn" class="btn btn-nav">← Previous</button>
+                <button id="shuffleBtn" class="btn btn-action">🔀 Shuffle</button>
+                <button id="nextBtn" class="btn btn-nav">Next →</button>
+            </div>
+
+            <div class="answer-controls">
+                <button id="incorrectBtn" class="btn btn-answer btn-incorrect">❌ Incorrect</button>
+                <button id="correctBtn" class="btn btn-answer btn-correct">✅ Correct</button>
+            </div>
+        </div>
+
+        <!-- Settings Screen -->
+        <div id="settingsScreen" class="screen">
+            <div class="settings-container">
+                <h2>⚙️ Settings</h2>
+
+                <div class="setting-section">
+                    <h3>Display</h3>
+                    <label class="setting-item">
+                        <input type="checkbox" id="darkModeToggle">
+                        <span>Dark Mode</span>
+                    </label>
+                    <label class="setting-item">
+                        <span>Font Size</span>
+                        <input type="range" id="fontSizeSlider" min="12" max="20" value="16">
+                        <span id="fontSizeDisplay">16px</span>
+                    </label>
+                </div>
+
+                <div class="setting-section">
+                    <h3>Audio</h3>
+                    <label class="setting-item">
+                        <span>Playback Speed</span>
+                        <select id="audioSpeedSelect">
+                            <option value="0.75">Slow (0.75x)</option>
+                            <option value="1" selected>Normal (1x)</option>
+                            <option value="1.25">Fast (1.25x)</option>
+                            <option value="1.5">Very Fast (1.5x)</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="setting-section">
+                    <h3>Account</h3>
+                    <button class="btn btn-secondary" id="resetDataBtn">Reset My Data</button>
+                    <button class="btn btn-danger" id="deleteAccountBtn">Delete Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="completionModal" class="modal"></div>
+
+    <script src="vocabulary.js"></script>
+    <script src="bonus-sentences.js"></script>
+    <script src="auth.js"></script>
+    <script src="features.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
